@@ -9,7 +9,7 @@ class Sex(models.Model):
         return self.sex
 
 
-class Driver(models.Model):
+class Owner(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     nis = models.CharField(max_length=10, unique=True)

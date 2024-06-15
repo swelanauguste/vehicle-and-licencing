@@ -1,5 +1,5 @@
 from django.db import models
-
+from owners.models import Owner
 
 class Manufacturer(models.Model):
     manufacturer = models.CharField(max_length=255, unique=True)
@@ -27,6 +27,7 @@ class VehicleColour(models.Model):
 
 
 class Vehicle(models.Model):
+    owners = models.ManyToManyField(Owner)
     licence_number = models.CharField(max_length=8)
     reg_on = models.DateField(blank=True, null=True, verbose_name="registered on")
     number = models.PositiveIntegerField()
@@ -41,3 +42,5 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return f"{self.manufacturer} {self.model} {self.year}"
+
+
