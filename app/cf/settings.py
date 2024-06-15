@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     "owners",
     "vehicles",
     "inspectors",
+    "licences",
+    "insurers",
+    "transactions",
 ]
 
 MIDDLEWARE = [

@@ -2,11 +2,11 @@ from django.db import models
 from offices.models import Location
 
 
-class Sex(models.Model):
-    sex = models.CharField(max_length=255)
+class Gender(models.Model):
+    gender = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.sex
+        return self.gender
 
 
 class Owner(models.Model):
@@ -20,9 +20,9 @@ class Owner(models.Model):
     place_of_birth = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
     date_of_birth = models.CharField(max_length=255)
-    sex = models.ForeignKey(Sex, on_delete=models.SET_NULL, null=True)
+    gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True)
     date_of_medical = models.DateField(blank=True, verbose_name="date of medical exam")
     reg_date = models.DateField(blank=True, null=True, verbose_name="registration date")
 
     def __str__(self):
-        return f"{self.frist_name} {self.last_name} {self.driver_number}"
+        return f"{self.last_name}, {self.first_name} {self.driver_number}"

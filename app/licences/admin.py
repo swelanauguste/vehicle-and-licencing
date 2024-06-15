@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Licence, LicenceType
+
+admin.site.register(Licence)
+admin.site.register(LicenceType)

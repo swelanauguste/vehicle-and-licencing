@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Insured, Insurer
+
+admin.site.register(Insurer)
+admin.site.register(Insured)

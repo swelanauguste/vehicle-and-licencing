@@ -1,15 +1,19 @@
 from django.db import models
 from owners.models import Owner
 
+
 class Manufacturer(models.Model):
     manufacturer = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.manufacturer
 
 
 class ModelYear(models.Model):
     year = models.PositiveIntegerField(unique=True)
 
     def __str__(self):
-        return self.year
+        return f"{self.year}"
 
 
 class VehicleModel(models.Model):
@@ -41,6 +45,4 @@ class Vehicle(models.Model):
     engine_capacity = models.CharField(max_length=255, verbose_name="cc")
 
     def __str__(self):
-        return f"{self.manufacturer} {self.model} {self.year}"
-
-
+        return f"{self.year} {self.manufacturer} {self.model}"
