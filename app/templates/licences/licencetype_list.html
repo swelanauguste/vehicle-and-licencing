@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5">
+    <h1>Licence Types</h1>
+    <hr>
+    {% if object_list %}
+    <div class="col-lg-3">
+        <ol>
+            {% for licence in object_list %}
+            <a class="text-success"
+                href="{{ licence.get_absolute_url }}">
+                <li>{{licence.licence_type|upper}}
+                    <ul>
+                        <li>{{licence.description}}</li>
+                    </ul>
+                </li>
+            </a>
+            <hr>
+            {% endfor %}
+        </ol>
+    </div>
+    {% else %}
+    <p>We have no inspectors</p>
+
+    {% endif %}
+
+</div>
+{% endblock content %}

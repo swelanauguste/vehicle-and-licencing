@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h2 class="border-bottom border-success">{{object}}</h2>
+  <br>
+  <div class="row">
+    <div class="col-lg py-3 px-5 border border-success rounded-4 me-5">
+      <h4 class="border-bottom border-success">Details</h4>
+      <p><strong>NIS: </strong>{{object.nis}}</p>
+      <p><strong>Driver number: </strong>{{object.driver_number}}</p>
+      <p><strong>Driver Code: </strong>{{object.driver_code}}</p>
+      <p><strong>Address: </strong>{{object.address}}</p>
+      <p><strong>Location Code: </strong>{{object.location_code}}</p>
+      <p><strong>Place of Birth: </strong>{{object.place_of_birth}}</p>
+      <p><strong>Nationality: </strong>{{object.nationality}}</p>
+      <p><strong>Date of Birth: </strong>{{object.date_of_birth}}</p>
+      <p><strong>Date of Medical: </strong>{{object.date_of_medical}}</p>
+      <p><strong>Registration Date: </strong>{{object.reg_date}}</p>
+    </div>
+    <div class="col-lg py-3 px-5 border border-success rounded-4 me-2">
+      <h4 class="border-bottom border-success">Vehicles</h4>
+      {% for vehicle in object.vehicle_set.all %}
+      <li><a class="text-success"
+          href="{{vehicle.get_absolute_url}}">{{vehicle}}</a></li>
+      <ul>
+        {% for insured in vehicle.insured_set.all %}
+        <li><a class="text-success"
+            href="">{{insured}}</a></li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

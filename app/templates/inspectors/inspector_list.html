@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-3">
+    <h1>Inspectors ({{inspector_count}})</h1>
+    <hr>
+    <form action="{% url 'owners:list' %}"
+        method="get">
+        <div class="col-lg-6 mx-auto">
+            <input type="text"
+                class="form-control rounded-pill"
+                name="q"
+                placeholder="Search name"
+                value="{{ request.GET.q }}">
+        </div>
+    </form>
+    <br>
+    {% if object_list %}
+    <ol>
+
+        {% for owner in object_list %}
+        <li><a class="text-success"
+                href="{{ owner.get_absolute_url }}">{{owner}}</a></li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <p>We have no inspectors</p>
+
+    {% endif %}
+
+</div>
+{% endblock content %}

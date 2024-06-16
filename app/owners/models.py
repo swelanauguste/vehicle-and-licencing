@@ -1,6 +1,6 @@
 from django.db import models
 from offices.models import Location
-
+from django.urls import reverse
 
 class Gender(models.Model):
     gender = models.CharField(max_length=255)
@@ -23,6 +23,9 @@ class Owner(models.Model):
     gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True)
     date_of_medical = models.DateField(blank=True, verbose_name="date of medical exam")
     reg_date = models.DateField(blank=True, null=True, verbose_name="registration date")
+
+    def get_absolute_url(self):
+        return reverse("owners:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name} {self.driver_number}"

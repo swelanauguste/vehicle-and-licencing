@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="border-bottom border-success">{{object}}</h2>
+    <br>
+    <div class="row">
+        <div class="col-lg py-3 px-5 border border-success rounded-4 me-5">
+            <h4 class="border-bottom border-success">Details</h4>
+            <p><strong>Insurer: </strong><a href="{{object.licence.get_absolute_url}}">{{object.licence}} - {{object.licence.description}}</a></p>
+            <p><strong>Vehicle: </strong><a class="text-success" href="{{object.owner.get_absolute_url}}">{{object.owner}}</a></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

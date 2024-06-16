@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="border-bottom border-success">{{object}}</h2>
+    <br>
+    <div class="row">
+        <div class="col-lg py-3 px-5 border border-success rounded-4 me-5">
+            <h4 class="border-bottom border-success">Details</h4>
+            <p><strong>Licence number: </strong>{{object.licence_number}}</p>
+            <p><strong>Registered: </strong>{{object.reg_on}}</p>
+            <p><strong>Number: </strong>{{object.number}}</p>
+            <p><strong>Previous owner:
+                </strong>{{object.previous_owner|yesno:"yes,no"|upper}}</p>
+            <p><strong>Manufacturer: </strong>{{object.year}}
+                {{object.manufacturer}} {{object.model}}</p>
+            <p><strong>Tare weight: </strong>{{object.tare_weight}}</p>
+            <p><strong>Chassis number: </strong>{{object.chassis_number}}</p>
+            <p><strong>Engine number: </strong>{{object.engine_number}}</p>
+            <p><strong>CC: </strong>{{object.engine_capacity}}</p>
+        </div>
+        <div class="col-lg py-3 px-5 border border-success rounded-4 me-2">
+            <h4 class="border-bottom border-success">Owners</h4>
+            {% for owner in object.owners.all %}
+            <li><a class="text-success"
+                    href="{{owner.get_absolute_url}}">{{owner}}</a></li>
+            <ul>
+                {% for insured in vehicle.insured_set.all %}
+                <li><a class="text-success"
+                        href="">{{insured}}</a></li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

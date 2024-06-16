@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from owners.models import Owner
 
 
@@ -43,6 +44,9 @@ class Vehicle(models.Model):
     chassis_number = models.CharField(max_length=255, unique=True)
     engine_number = models.CharField(max_length=255)
     engine_capacity = models.CharField(max_length=255, verbose_name="cc")
+
+    def get_absolute_url(self):
+        return reverse("vehicles:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.year} {self.manufacturer} {self.model}"

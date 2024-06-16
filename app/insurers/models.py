@@ -3,7 +3,7 @@ from inspectors.models import Inspector
 from offices.models import Location
 from owners.models import Owner
 from vehicles.models import Vehicle
-
+from django.urls import reverse
 
 class Insurer(models.Model):
     insurer = models.CharField(max_length=255, unique=True)
@@ -19,9 +19,12 @@ class Insured(models.Model):
     inspection_date = models.DateField(blank=True, null=True)
     date_insured = models.DateField(blank=True, null=True)
     expires = models.DateField(blank=True, null=True)
-    
+
     class Meta:
-        verbose_name_plural = 'insured'
+        verbose_name_plural = "insured"
+
+    def get_absolute_url(self):
+        return reverse("insurers:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.insurer} {self.vehicle} {self.expires}"

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-3">
+  <h1>Vehicles ({{vehicle_count}})</h1>
+  <hr>
+  <form action="{% url 'owners:list' %}"
+  method="get">
+  <div class="col-lg-6 mx-auto">
+    <input type="text"
+      class="form-control rounded-pill"
+      name="q"
+      placeholder="Search name"
+      value="{{ request.GET.q }}">
+  </div>
+</form>
+<br>
+  {% if object_list %}
+  <div>
+    <span>
+      {% if page_obj.has_previous %}
+      <a class="text-success"
+        href="?page=1">&laquo; first</a>
+      <a class="text-success"
+        href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+      <a class="text-success"
+        href="?page={{ page_obj.next_page_number }}">next</a>
+      <a class="text-success"
+        href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+  <hr>
+ 
+  <ol>
+    {% for vehicle in object_list %}
+    <li><a class="text-success"
+        href="{{ vehicle.get_absolute_url }}">
+        {{vehicle.licence_number}}, {{vehicle.owners.last}}</a></li>
+    {% endfor %}
+  </ol>
+  <hr>
+  <div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a class="text-success"
+        href="?page=1">&laquo; first</a>
+      <a class="text-success"
+        href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="text-success">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+      <a class="text-success"
+        href="?page={{ page_obj.next_page_number }}">next</a>
+      <a class="text-success"
+        href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+  {% else %}
+  {% endif %}
+</div>
+{% endblock content %}
