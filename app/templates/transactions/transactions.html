@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="border-bottom border-success">Transactions</h1>
+    <ol>
+        <li><a class="text-success" href="{% url 'transactions:insurance-list' %}">Insurance</a></li>
+        <li><a class="text-success" href="{% url 'transactions:licence-list' %}">Licences</a></li>
+        <li><a class="text-success" href="{% url 'transactions:vehicle-list' %}">Vehicles</a></li>
+    </ol>
+</div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h2 class="border-bottom border-success">{{object}}</h2>
+  <br>
+  <div class="row">
+    <div class="col-lg py-3 px-5 border border-success rounded-4 me-5">
+      <h4 class="border-bottom border-success">Details</h4>
+      <p><strong>Paid at: </strong>{{object.paid_at|upper}}</p>
+      <p><strong>Date paid: </strong>{{object.date_paid}}</p>
+      <p><strong>Amount: </strong>${{object.amount}}</p>
+      <p><strong>Receipt number: </strong>{{object.receipt_number}}</p>
+     
+    </div>
+    <div class="col-lg py-3 px-5 border border-success rounded-4 me-2">
+      <h4 class="border-bottom border-success">Vehicles</h4>
+      <p><strong>Insurer: </strong>{{object.insurance.insurer}}</p>
+      <p><strong>Vehicle: </strong><a class="text-success" href="{{object.insurance.vehicle.get_absolute_url}}">{{object.insurance.vehicle}}</a></p>
+      <p><strong>Inspected by: </strong>{{object.insurance.inspected_by}}</p>
+      <p><strong>Inspection date: </strong>{{object.insurance.inspection_date}}</p>
+      <p><strong>Date insured: </strong>{{object.insurance.date_insured}}</p>
+      <p><strong>Expires: </strong>{{object.insurance.expires}}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -5,7 +5,7 @@
     <h2 class="border-bottom border-success">{{object}}</h2>
     <br>
     <div class="row">
-        <div class="col-lg py-3 px-5 border border-success rounded-4 me-5">
+        <div class="col-lg py-3 px-5 border border-success rounded-4 me-2">
             <h4 class="border-bottom border-success">Details</h4>
             <p><strong>Licence number: </strong>{{object.licence_number}}</p>
             <p><strong>Registered: </strong>{{object.reg_on}}</p>
@@ -30,6 +30,14 @@
                         href="">{{insured}}</a></li>
                 {% endfor %}
             </ul>
+            {% endfor %}
+        </div>
+        <div class="col-lg py-3 px-5 border border-success rounded-4 me-2">
+            <h4 class="border-bottom border-success">Insurance</h4>
+            {% for insured in object.insured_set.all %}
+            <li><a class="text-success"
+                    href="{{insured.get_absolute_url}}">{{insured}}</a></li>
+           
             {% endfor %}
         </div>
     </div>

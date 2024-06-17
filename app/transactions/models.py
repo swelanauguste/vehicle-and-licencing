@@ -3,15 +3,7 @@ from insurers.models import Insured
 from licences.models import Licence
 from offices.models import Location
 from vehicles.models import Vehicle
-
-
-# class TransactionType(models.Model):
-#     transaction_type = models.CharField(max_length=255, unique=True)
-#     description = models.TextField(blank=True)
-
-#     def __str__(self):
-#         return self.transaction_type
-
+from django.urls import reverse
 
 class TransactionInsurance(models.Model):
     insurance = models.ForeignKey(
@@ -22,10 +14,11 @@ class TransactionInsurance(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
     receipt_number = models.CharField(max_length=255, unique=True)
 
+    def get_absolute_url(self):
+        return reverse("transactions:insurance-detail", kwargs={"pk": self.pk})
+
     def __str__(self):
-        return (
-            f"{self.insurance} {self.amount} {self.receipt_number}"
-        )
+        return f"{self.insurance} ${self.amount} {self.receipt_number}"
 
 
 class TransactionLicence(models.Model):
@@ -36,9 +29,12 @@ class TransactionLicence(models.Model):
     date_paid = models.DateField(null=True, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
     receipt_number = models.CharField(max_length=255, unique=True)
+    
+    def get_absolute_url(self):
+        return reverse("transactions:licence-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f"{self.licence} {self.amount} {self.receipt_number}"
+        return f"{self.licence} ${self.amount} {self.receipt_number}"
 
 
 class TransactionVehicle(models.Model):
@@ -49,6 +45,9 @@ class TransactionVehicle(models.Model):
     date_paid = models.DateField(null=True, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
     receipt_number = models.CharField(max_length=255, unique=True)
+    
+    def get_absolute_url(self):
+        return reverse("transactions:vehicle-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.vehicle} ${self.amount} {self.receipt_number}"
